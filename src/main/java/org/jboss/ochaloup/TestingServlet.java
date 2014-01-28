@@ -3,11 +3,13 @@ package org.jboss.ochaloup;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 import com.arjuna.ats.arjuna.common.CoordinatorEnvironmentBean;
 import com.arjuna.ats.arjuna.common.CoreEnvironmentBean;
@@ -18,11 +20,19 @@ import com.arjuna.common.internal.util.propertyservice.BeanPopulator;
 @WebServlet(name="TestingServlet", urlPatterns={"/"})
 public class TestingServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
+    
+    @EJB
+    TestEJBBean bean;
         
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        
+        out.print("Sending message...");
+        bean.goSend();
+        
         out.print("<h4>Transaction Object Store Environment bean info output</h4>");
         
         StringBuffer paramsMsg = new StringBuffer();

@@ -6,11 +6,9 @@
   <artifactId>transaction-mbean</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>war</packaging>
-  
   <properties>
     <version.jbossts>4.17.15.Final</version.jbossts>
   </properties>
-  
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -19,43 +17,52 @@
         <version>3.0.1</version>
       </dependency>
       <dependency>
+        <groupId>javax.transaction</groupId>
+        <artifactId>javax.transaction-api</artifactId>
+        <version>1.2</version>
+      </dependency>
+      <dependency>
+        <groupId>javax.ejb</groupId>
+        <artifactId>javax.ejb-api</artifactId>
+        <version>3.2</version>
+      </dependency>
+      <dependency>
         <groupId>org.jboss.spec</groupId>
         <artifactId>jboss-javaee-6.0</artifactId>
         <version>3.0.2.Final</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>javax.transaction</groupId>
-        <artifactId>javax.transaction-api</artifactId>
-        <version>1.2</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
-  
   <dependencies>
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
-    
     <dependency>
       <groupId>javax.transaction</groupId>
       <artifactId>javax.transaction-api</artifactId>
       <scope>provided</scope>
     </dependency>
-    
-    <!-- Narayana dependency added -->
     <dependency>
       <groupId>org.jboss.jbossts.jts</groupId>
       <artifactId>jbossjts-jacorb</artifactId>
       <version>${version.jbossts}</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>javax.ejb</groupId>
+      <artifactId>javax.ejb-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.spec.javax.jms</groupId>
+      <artifactId>jboss-jms-api_1.1_spec</artifactId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
-  
-  
   <build>
     <plugins>
       <plugin>
